@@ -8,7 +8,7 @@ enum KT_EWeaponType
     Melee;
 }
 
-public class KT_Weapon extends KT_Gear
+public class KT_Weapon //extends KT_Gear
 {
     class KT_WeaponStats
     {

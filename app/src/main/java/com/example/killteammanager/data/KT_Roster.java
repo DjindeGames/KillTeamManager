@@ -2,7 +2,7 @@ package com.example.killteammanager.data;
 
 import java.util.List;
 
-public class KT_Roster extends KTM_Serializable
+public class KT_Roster //extends KTM_Serializable
 {
     private String m_Name;
     private String m_Faction;

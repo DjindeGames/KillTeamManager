@@ -29,7 +29,7 @@ enum KT_EOperativeBattleScar
     CerebralAffliction;
 }
 
-public class KT_OperativeProgression extends KTM_Serializable
+public class KT_OperativeProgression //extends KTM_Serializable
 {
     private int m_ExperiencePoints;
     private KT_EOperativeSpecialization m_Specialization;

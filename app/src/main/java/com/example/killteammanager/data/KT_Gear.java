@@ -1,6 +1,6 @@
 package com.example.killteammanager.data;
 
-public abstract class KT_Gear extends KTM_Serializable
+public abstract class KT_Gear //extends KTM_Serializable
 {
     private String m_Name;
 

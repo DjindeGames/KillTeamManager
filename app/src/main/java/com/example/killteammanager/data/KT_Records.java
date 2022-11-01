@@ -1,6 +1,6 @@
 package com.example.killteammanager.data;
 
-public class KT_Records extends KTM_Serializable
+public class KT_Records //extends KTM_Serializable
 {
     private int m_AttacksMade;
     private int m_Hits;

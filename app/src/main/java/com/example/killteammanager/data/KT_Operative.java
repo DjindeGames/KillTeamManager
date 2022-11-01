@@ -1,9 +1,43 @@
 package com.example.killteammanager.data;
 
-import java.util.List;
+import com.example.killteammanager.utils.KTM_Constants;
 
-public class KT_Operative extends KTM_Serializable
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+import java.util.UUID;
+
+public class KT_Operative extends KT_Serializable
 {
+    @Override
+    public String getFilePath() {
+        return KTM_Constants.getOperativesFolderPath();
+    }
+
+    @Override
+    public JSONObject serialize() {
+        JSONObject serialized = super.serialize();
+        try {
+            serialized.put(KTM_Constants.getJSONOperativeNameFieldID(), getM_Name());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return serialized;
+    }
+
+    @Override
+    public boolean deserialize(JSONObject serializedData){
+        try {
+            setM_UniqueID(UUID.fromString(serializedData.getString(KTM_Constants.getJSONSerializableUIDFiledID())));
+            setM_Name(serializedData.getString(KTM_Constants.getJSONOperativeNameFieldID()));
+            return true;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     class KT_OperativeStats
     {
         private short m_Movement;
@@ -62,10 +96,28 @@ public class KT_Operative extends KTM_Serializable
         }
     }
 
+    private String m_Name;
+    private String m_Profile;
     private KT_OperativeStats m_Stats;
     private List<KT_Weapon> m_Weapons;
     private KT_OperativeProgression m_Progression;
     private KT_OperativeRecords m_Records;
+
+    public String getM_Name() {
+        return m_Name;
+    }
+
+    public void setM_Name(String m_Name) {
+        this.m_Name = m_Name;
+    }
+
+    public String getM_Profile() {
+        return m_Profile;
+    }
+
+    public void setM_Profile(String m_Profile) {
+        this.m_Profile = m_Profile;
+    }
 
     public KT_OperativeStats getM_Stats() {
         return m_Stats;
