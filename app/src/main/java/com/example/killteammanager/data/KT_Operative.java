@@ -8,36 +8,8 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.UUID;
 
-public class KT_Operative extends KT_Serializable
+public class KT_Operative extends KT_SerializableResource
 {
-    @Override
-    public String getFilePath() {
-        return KTM_Constants.getOperativesFolderPath();
-    }
-
-    @Override
-    public JSONObject serialize() {
-        JSONObject serialized = super.serialize();
-        try {
-            serialized.put(KTM_Constants.getJSONOperativeNameFieldID(), getM_Name());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return serialized;
-    }
-
-    @Override
-    public boolean deserialize(JSONObject serializedData){
-        try {
-            setM_UniqueID(UUID.fromString(serializedData.getString(KTM_Constants.getJSONSerializableUIDFiledID())));
-            setM_Name(serializedData.getString(KTM_Constants.getJSONOperativeNameFieldID()));
-            return true;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     class KT_OperativeStats
     {
         private short m_Movement;
@@ -102,6 +74,28 @@ public class KT_Operative extends KT_Serializable
     private List<KT_Weapon> m_Weapons;
     private KT_OperativeProgression m_Progression;
     private KT_OperativeRecords m_Records;
+
+    @Override
+    public JSONObject serialize() {
+        JSONObject serialized = new JSONObject();
+        try {
+            serialized.put(KTM_Constants.getJSONOperativeNameFieldID(), getM_Name());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return serialized;
+    }
+
+    @Override
+    public boolean deserialize(JSONObject serializedData){
+        try {
+            setM_Name(serializedData.getString(KTM_Constants.getJSONOperativeNameFieldID()));
+            return true;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public String getM_Name() {
         return m_Name;
